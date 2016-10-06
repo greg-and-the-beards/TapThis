@@ -1,6 +1,8 @@
-package com.tiyssa.config;
+package com.tapthis.config;
 
 import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +11,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.tiyssa.entity.Employee;
-
-import org.apache.commons.dbcp.BasicDataSource;
+import com.tapthis.entity.ReviewInfo;
+import com.tapthis.entity.UserInfo;
 
 @Configuration
 @EnableTransactionManagement
@@ -26,15 +27,15 @@ public class DbConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/springDemo?autoReconnect=true&useSSL=false");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/greg_and_the_beards?autoReconnect=true&useSSL=false");
 		dataSource.setUsername("root");
-		dataSource.setPassword("P@ssw0rd");
+		dataSource.setPassword("sesame");
 		return dataSource;
 	}
 
 	@Bean
 	public SessionFactory sessionFactory() {
-		return new LocalSessionFactoryBuilder(getDataSource()).addAnnotatedClasses(Employee.class)
+		return new LocalSessionFactoryBuilder(getDataSource()).addAnnotatedClasses(UserInfo.class, ReviewInfo.class)
 				.buildSessionFactory();
 	}
 
@@ -42,5 +43,4 @@ public class DbConfig {
 	public HibernateTransactionManager hibTransMan() {
 		return new HibernateTransactionManager(sessionFactory());
 	}
-
 }
