@@ -2,6 +2,8 @@ package com.tapthis.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,6 +35,16 @@ public class WebsiteController {
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mv) {
 		mv.setViewName("index");
+		return mv;
+ 	}
+	
+	@RequestMapping("/APIResults")
+	public ModelAndView APIResults(ModelAndView mv) {
+		return mv;
+ 	}
+	
+	@RequestMapping("/beerDetails")
+	public ModelAndView beerDetails(ModelAndView mv) {
 		return mv;
  	}
 	
