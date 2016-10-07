@@ -24,11 +24,6 @@ public class UserServiceImpl implements UserService {
 	}	
 
 	@Override
-	public List<UserInfo> getUsers(){
-		return userDAO.getUsers();
-	}
-
-	@Override
 	public synchronized boolean addUser(UserInfo user) {
 		userDAO.addUser(user);
 		return true;
