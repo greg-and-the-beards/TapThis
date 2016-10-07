@@ -41,13 +41,6 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return (List<ReviewInfo>) hibernateTemplate.find(hql);
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<ReviewInfo> getReviews() {
-		String hql = "FROM ReviewInfo";
-		return (List<ReviewInfo>) hibernateTemplate.find(hql);
-	}
-	
 	@Override
 	public boolean addReview(ReviewInfo review) {
 		hibernateTemplate.save(review);

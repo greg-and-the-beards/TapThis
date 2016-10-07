@@ -6,7 +6,6 @@ import com.tapthis.entity.ReviewInfo;
 
 public interface ReviewService {
 	
-	List<ReviewInfo> getReviews();
 	List<ReviewInfo> getReviewByBeerName(String beerName);
 	List<ReviewInfo> getAllReviewsByUserId(int reviewUserID);
 	List<ReviewInfo> getOneReviewByUserId(int reviewUserId, int reviewId);

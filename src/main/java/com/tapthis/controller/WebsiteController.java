@@ -43,13 +43,6 @@ public class WebsiteController {
 		return new ResponseEntity<UserInfo>(user, HttpStatus.OK);
 	}
 
-//	//GET all users from database
-//	@RequestMapping(value= "/user", method = RequestMethod.GET)
-//	public ResponseEntity<List<UserInfo>> getUsers() {
-//		List<UserInfo> user = userService.getUsers();
-//		return new ResponseEntity<List<UserInfo>>(user, HttpStatus.OK);
-//	}
-
 	//POST one user to user table
 	@RequestMapping(value= "/user", method = RequestMethod.POST)
 	public ResponseEntity<UserInfo> eachUser(@RequestBody UserInfo user, UriComponentsBuilder builder) {
@@ -96,13 +89,6 @@ public class WebsiteController {
 		List<ReviewInfo> review = reviewService.getOneReviewByUserId(reviewUserId, reviewId);
 		return new ResponseEntity<List<ReviewInfo>>(review, HttpStatus.OK);
 	}
-
-//	//GET all reviews from database
-//	@RequestMapping(value= "/review/", method = RequestMethod.GET)
-//	public ResponseEntity<List<ReviewInfo>> getReviews() {
-//		List<ReviewInfo> review = reviewService.getReviews();
-//		return new ResponseEntity<List<ReviewInfo>>(review, HttpStatus.OK);
-//	}
 
 	//POST one review to review table
 	@RequestMapping(value= "/review", method = RequestMethod.POST)
