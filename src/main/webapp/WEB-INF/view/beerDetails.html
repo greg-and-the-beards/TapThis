@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Hello
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/scriptfunctions.js"></script>
+<!-- <script>
+
+$(function(){
+	
+	
+	function $_GET(param) {
+		var vars = {};
+		window.location.href.replace( location.hash, '' ).replace( 
+			/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+			function( m, key, value ) { // callback
+				vars[key] = value !== undefined ? value : '';
+			}
+		);
+
+		if ( param ) {
+			return vars[param] ? vars[param] : null;	
+		}
+		return vars;
+	}
+
+	$.get( "https://api.untappd.com/v4/search/beer?q="+ $_GET(beerInfo) +"&client_id=B2397B44662D900D4265BF03E035CE16D5CF4846&client_secret=2AE5A2667723D53FDDDCF2410EB5412F91FE433A", function( data ) {
+		
+		console.log(beerInfo)
+		
+	}, "json" )
+})
+
+
+</script> -->
+
+</body>
+</html>

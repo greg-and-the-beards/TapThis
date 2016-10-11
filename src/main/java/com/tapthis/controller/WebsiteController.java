@@ -36,6 +36,18 @@ public class WebsiteController {
 		return mv;
  	}
 	
+	//user search results page with multiple beers
+	@RequestMapping("/APIResults")
+	public ModelAndView APIResults(ModelAndView mv) {
+		return mv;
+ 	}
+	
+	//specific beer selected from APIResults page
+	@RequestMapping("/beerDetails")
+	public ModelAndView beerDetails(ModelAndView mv) {
+		return mv;
+ 	}
+	
 	//GET one user by id from user table
 	@RequestMapping(value="/user/{id}", method = RequestMethod.GET )
 	public ResponseEntity<UserInfo> getUserById(@PathVariable("id") Integer id) {
