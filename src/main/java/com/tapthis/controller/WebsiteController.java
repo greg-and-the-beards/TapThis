@@ -2,6 +2,8 @@ package com.tapthis.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -36,19 +38,29 @@ public class WebsiteController {
 		return mv;
  	}
 	
+<<<<<<< HEAD
 	//user search results page with multiple beers
+=======
+>>>>>>> refs/remotes/origin/Jakes-Dev
 	@RequestMapping("/APIResults")
 	public ModelAndView APIResults(ModelAndView mv) {
 		return mv;
  	}
 	
+<<<<<<< HEAD
 	//specific beer selected from APIResults page
+=======
+>>>>>>> refs/remotes/origin/Jakes-Dev
 	@RequestMapping("/beerDetails")
 	public ModelAndView beerDetails(ModelAndView mv) {
 		return mv;
  	}
 	
+<<<<<<< HEAD
 	//GET one user by id from user table
+=======
+	//view user by id from database
+>>>>>>> refs/remotes/origin/Jakes-Dev
 	@RequestMapping(value="/user/{id}", method = RequestMethod.GET )
 	public ResponseEntity<UserInfo> getUserById(@PathVariable("id") Integer id) {
 		UserInfo user = userService.getUserById(id);
