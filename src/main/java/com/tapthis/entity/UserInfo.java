@@ -7,34 +7,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class UserInfo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="idusers")
+	@Column(name = "idusers")
 	private int userId;
-	
-	@Column(name="userName")
+
+	@Column(name = "userName")
 	private String userName;
-	
-	@Column(name="firstName")
+
+	@Column(name = "firstName")
 	private String firstName;
-	
-	@Column(name="lastName")
+
+	@Column(name = "lastName")
 	private String lastName;
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="phone")
+
+	@Column(name = "phone")
 	private String phone;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
-	
-	@Column(name="date_of_birth")
+
+	@Column(name = "date_of_birth")
 	private String dateOfBirth;
 
 	public int getUserId() {

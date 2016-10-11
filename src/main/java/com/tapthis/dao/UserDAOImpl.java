@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO {
 	public List<UserInfo> getUsers() {
 		String hql = "FROM UserInfo as e ORDER by e.userId";
 		return (List<UserInfo>) hibernateTemplate.find(hql);
-	}	
+	}
 
 	@Override
 	public boolean addUser(UserInfo user) {
@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void updateUser(UserInfo user) {
 		UserInfo record = getUserById(user.getUserId());
-		
+
 		record.setUserName(user.getUserName());
 		record.setFirstName(user.getFirstName());
 		record.setLastName(user.getLastName());
@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO {
 
 		hibernateTemplate.update(record);
 	}
-	
+
 	@Override
 	public void deleteUser(int userId) {
 		hibernateTemplate.delete(getUserById(userId));

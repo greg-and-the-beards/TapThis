@@ -15,29 +15,29 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private ReviewDAO reviewDAO;
-	
+
 	@Override
 	public ReviewInfo getReviewById(int reviewId) {
 		ReviewInfo obj = reviewDAO.getReviewById(reviewId);
 		return obj;
 	}
-	
+
 	@Override
 	public List<ReviewInfo> getReviews() {
 		return reviewDAO.getReviews();
 	}
-	
+
 	@Override
 	public synchronized boolean addReview(ReviewInfo review) {
 		reviewDAO.addReview(review);
 		return true;
 	}
-	
+
 	@Override
 	public void updateReview(ReviewInfo review) {
 		reviewDAO.updateReview(review);
 	}
-	
+
 	@Override
 	public void deleteReview(int reviewId) {
 		reviewDAO.deleteReview(reviewId);

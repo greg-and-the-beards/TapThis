@@ -7,34 +7,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="beer_review")
+@Table(name = "beer_review")
 public class ReviewInfo implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="id_review")
+	@Column(name = "id_review")
 	private int reviewId;
-	
-	@Column(name="beer_name")
+
+	@Column(name = "beer_name")
 	private String beerName;
-	
-	@Column(name="user_id")
+
+	@Column(name = "user_id")
 	private int reviewUserId;
-	
-	@Column(name="beer_rating_overall_quality")
+
+	@Column(name = "beer_rating_overall_quality")
 	private int beerRating;
-	
-	@Column(name="hops_rating")
+
+	@Column(name = "hops_rating")
 	private int hopsRating;
-	
-	@Column(name="malt_rating")
+
+	@Column(name = "malt_rating")
 	private int maltRating;
-	
-	@Column(name="review_comment")
+
+	@Column(name = "review_comment")
 	private String reviewComment;
-	
-	@Column(name="review_date_time_added")
+
+	@Column(name = "review_date_time_added")
 	private String reviewAdded;
 
 	public int getReviewId() {
