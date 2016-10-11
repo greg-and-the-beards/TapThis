@@ -3,12 +3,14 @@ package com.tapthis.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,15 @@ public class WebsiteController {
 		return mv;
  	}
 	
+	// HttpSession example
+	// java: @RequestMapping("/")
+	//public ModelAndView home(ModelAndView mv, HttpSession sessionObj) {
+	//	sessionObj.setAttribute("message", "blah blah blah");
+	//	mv.setViewName("index");
+	//	return mv; }
+	// html: in a span or div >>> <span th:text = "${session.message}"></span>
+	// to end a session: session.invalidate();
+	
 	//user search results page with multiple beers
 	@RequestMapping("/APIResults")
 	public ModelAndView APIResults(ModelAndView mv) {
@@ -51,6 +62,11 @@ public class WebsiteController {
 		return mv;
  	}
 	
+	@RequestMapping("/register")
+	public ModelAndView register(ModelAndView mv) {
+		return mv;
+	}
+	
 	//GET one user by id from user table
 	//view user by id from database
 	@RequestMapping(value="/user/{id}", method = RequestMethod.GET )
@@ -61,14 +77,9 @@ public class WebsiteController {
 
 	//POST one user to user table
 	@RequestMapping(value= "/user", method = RequestMethod.POST)
-	public ResponseEntity<UserInfo> eachUser(@RequestBody UserInfo user, UriComponentsBuilder builder) {
-        boolean flag = userService.addUser(user);
-        if (flag == false) {
-        	return new ResponseEntity<UserInfo>(HttpStatus.CONFLICT);
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/user/{id}").buildAndExpand(user.getUserId()).toUri());
-        return new ResponseEntity<UserInfo>(headers, HttpStatus.CREATED);
+	public ModelAndView eachUser(@ModelAttribute UserInfo user, ModelAndView mv) {
+        userService.addUser(user);
+        return new ModelAndView("redirect:" + "/");
 	}
 	
 	//PUT one user to user table
