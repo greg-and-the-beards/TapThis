@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import com.tapthis.entity.ReviewInfo;
 
-
+ 
 @Repository
 public class ReviewDAOImpl implements ReviewDAO {
 	
@@ -22,8 +22,22 @@ public class ReviewDAOImpl implements ReviewDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReviewInfo> getReviews() {
-		String hql = "FROM ReviewInfo as e ORDER by e.reviewId";
+	public List<ReviewInfo> getOneReviewByUserId(int reviewUserId, int reviewId) {
+		String hql = "FROM ReviewInfo where reviewUserId = " + reviewUserId + " and reviewId = " + reviewId;
+		return (List<ReviewInfo>) hibernateTemplate.find(hql);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ReviewInfo> getReviewByBeerName(String beerName) {
+		String hql = "FROM ReviewInfo where beerName = '" + beerName + "'";
+		return (List<ReviewInfo>) hibernateTemplate.find(hql);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ReviewInfo> getAllReviewsByUserId(int reviewUserId) {
+		String hql = "FROM ReviewInfo where reviewUserId = " + reviewUserId;
 		return (List<ReviewInfo>) hibernateTemplate.find(hql);
 	}
 	

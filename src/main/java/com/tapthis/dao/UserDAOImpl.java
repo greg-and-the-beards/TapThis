@@ -20,13 +20,6 @@ public class UserDAOImpl implements UserDAO {
 		return hibernateTemplate.get(UserInfo.class, userId);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<UserInfo> getUsers() {
-		String hql = "FROM UserInfo as e ORDER by e.userId";
-		return (List<UserInfo>) hibernateTemplate.find(hql);
-	}	
-
 	@Override
 	public boolean addUser(UserInfo user) {
 		hibernateTemplate.save(user);

@@ -38,31 +38,36 @@ public class WebsiteController {
 		return mv;
  	}
 	
+<<<<<<< HEAD
+	//user search results page with multiple beers
+=======
+>>>>>>> refs/remotes/origin/Jakes-Dev
 	@RequestMapping("/APIResults")
 	public ModelAndView APIResults(ModelAndView mv) {
 		return mv;
  	}
 	
+<<<<<<< HEAD
+	//specific beer selected from APIResults page
+=======
+>>>>>>> refs/remotes/origin/Jakes-Dev
 	@RequestMapping("/beerDetails")
 	public ModelAndView beerDetails(ModelAndView mv) {
 		return mv;
  	}
 	
+<<<<<<< HEAD
+	//GET one user by id from user table
+=======
 	//view user by id from database
+>>>>>>> refs/remotes/origin/Jakes-Dev
 	@RequestMapping(value="/user/{id}", method = RequestMethod.GET )
 	public ResponseEntity<UserInfo> getUserById(@PathVariable("id") Integer id) {
 		UserInfo user = userService.getUserById(id);
 		return new ResponseEntity<UserInfo>(user, HttpStatus.OK);
 	}
 
-	//view all users from database
-	@RequestMapping(value= "/user", method = RequestMethod.GET)
-	public ResponseEntity<List<UserInfo>> getUsers() {
-		List<UserInfo> user = userService.getUsers();
-		return new ResponseEntity<List<UserInfo>>(user, HttpStatus.OK);
-	}
-
-	//write to user database
+	//POST one user to user table
 	@RequestMapping(value= "/user", method = RequestMethod.POST)
 	public ResponseEntity<UserInfo> eachUser(@RequestBody UserInfo user, UriComponentsBuilder builder) {
         boolean flag = userService.addUser(user);
@@ -74,35 +79,42 @@ public class WebsiteController {
         return new ResponseEntity<UserInfo>(headers, HttpStatus.CREATED);
 	}
 	
-	//update to user database
+	//PUT one user to user table
 	@RequestMapping(value="/user/{id}", method = RequestMethod.PUT )
 	public ResponseEntity<UserInfo> updateUser(@RequestBody UserInfo user, @PathVariable("id") Integer userId) {
 		userService.updateUser(user);
 		return new ResponseEntity<UserInfo>(user, HttpStatus.OK);
 	}
 	
-	//delete to user database
+	//DELETE one user to user table
 	@RequestMapping(value="/user/{id}", method = RequestMethod.DELETE )
 	public ResponseEntity<UserInfo> deleteUser(@PathVariable("id") Integer userId) {
 		userService.deleteUser(userId);
 		return new ResponseEntity<UserInfo>(HttpStatus.NO_CONTENT);
 	}	
-	
-	//view reviews by id from database
-	@RequestMapping(value="/review/{id}", method = RequestMethod.GET )
-	public ResponseEntity<ReviewInfo> getReviewById(@PathVariable("id") Integer id) {
-		ReviewInfo review = reviewService.getReviewById(id);
-		return new ResponseEntity<ReviewInfo>(review, HttpStatus.OK);
-	}
 
-	//view all reviews from database
-	@RequestMapping(value= "/review", method = RequestMethod.GET)
-	public ResponseEntity<List<ReviewInfo>> getReviews() {
-		List<ReviewInfo> review = reviewService.getReviews();
+	//GET all reviews by one beerName from review table
+	@RequestMapping(value="/allreviewsbyname/{beerName}", method = RequestMethod.GET )
+	public ResponseEntity<List<ReviewInfo>> getReviewByBeerName(@PathVariable("beerName") String beerName) {
+		List<ReviewInfo> review = reviewService.getReviewByBeerName(beerName);
+		return new ResponseEntity<List<ReviewInfo>>(review, HttpStatus.OK);
+	}
+	
+	//GET all reviews by one reviewUserId from review table
+	@RequestMapping(value="/allreviewsbyid/{reviewUserId}", method = RequestMethod.GET)
+	public ResponseEntity<List<ReviewInfo>> getAllReviewsByUserId(@PathVariable("reviewUserId") int reviewUserId) {
+		List<ReviewInfo> review = reviewService.getAllReviewsByUserId(reviewUserId);
+		return new ResponseEntity<List<ReviewInfo>>(review, HttpStatus.OK);
+	}
+	
+	//GET one review by one reviewUserId from review table
+	@RequestMapping(value="/onereviewbyid/{reviewUserId}/{reviewId}", method = RequestMethod.GET)
+	public ResponseEntity<List<ReviewInfo>> getOneReviewByUserId(@PathVariable("reviewUserId") int reviewUserId, @PathVariable("reviewId") int reviewId) {
+		List<ReviewInfo> review = reviewService.getOneReviewByUserId(reviewUserId, reviewId);
 		return new ResponseEntity<List<ReviewInfo>>(review, HttpStatus.OK);
 	}
 
-	//write review to database
+	//POST one review to review table
 	@RequestMapping(value= "/review", method = RequestMethod.POST)
 	public ResponseEntity<ReviewInfo> eachReview(@RequestBody ReviewInfo review, UriComponentsBuilder builder) {
         boolean flag = reviewService.addReview(review);
@@ -114,14 +126,14 @@ public class WebsiteController {
         return new ResponseEntity<ReviewInfo>(headers, HttpStatus.CREATED);
 	}
 	
-	//update review to database
+	//PUT one review by reviewId to review table
 	@RequestMapping(value="/review/{id}", method = RequestMethod.PUT )
 	public ResponseEntity<ReviewInfo> updateReview(@RequestBody ReviewInfo review) {
 		reviewService.updateReview(review);
 		return new ResponseEntity<ReviewInfo>(review, HttpStatus.OK);
 	}
 	
-	//delete review from database
+	//DELETE one review by reviewId to review table
 	@RequestMapping(value="/review/{id}", method = RequestMethod.DELETE )
 	public ResponseEntity<ReviewInfo> deleteReview(@PathVariable("id") Integer reviewId) {
 		reviewService.deleteReview(reviewId);

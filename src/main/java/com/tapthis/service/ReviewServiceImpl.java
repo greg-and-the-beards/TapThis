@@ -23,10 +23,20 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewInfo> getReviews() {
-		return reviewDAO.getReviews();
+	public List<ReviewInfo> getOneReviewByUserId(int reviewUserId, int reviewId) {
+		return reviewDAO.getOneReviewByUserId(reviewUserId, reviewId);
 	}
 	
+	@Override
+	public List<ReviewInfo> getReviewByBeerName(String beerName) {
+		return reviewDAO.getReviewByBeerName(beerName);
+	}
+	
+	@Override
+	public List<ReviewInfo> getAllReviewsByUserId(int reviewUserId) {
+		return reviewDAO.getAllReviewsByUserId(reviewUserId);
+	}
+
 	@Override
 	public synchronized boolean addReview(ReviewInfo review) {
 		reviewDAO.addReview(review);
