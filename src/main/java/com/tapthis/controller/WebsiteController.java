@@ -5,11 +5,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,31 +66,33 @@ public class WebsiteController {
 		return mv;
  	}
 	
+	// registration page form for writing one user to database
 	@RequestMapping("/register")
 	public ModelAndView register(ModelAndView mv) {
 		return mv;
 	}
-	
-	//GET one user by id from user table
-	//view user by id from database
-	@RequestMapping(value="/user/{id}", method = RequestMethod.GET )
-	public ResponseEntity<UserInfo> getUserById(@PathVariable("id") Integer id) {
-		UserInfo user = userService.getUserById(id);
-		return new ResponseEntity<UserInfo>(user, HttpStatus.OK);
-	}
 
-	//POST one user to user table
+	// POST one user to user table
 	@RequestMapping(value= "/user", method = RequestMethod.POST)
 	public ModelAndView eachUser(@ModelAttribute UserInfo user, ModelAndView mv) {
         userService.addUser(user);
-        return new ModelAndView("redirect:" + "/");
+        return new ModelAndView("redirect:/");
 	}
 	
-	//PUT one user to user table
-	@RequestMapping(value="/user/{id}", method = RequestMethod.PUT )
-	public ResponseEntity<UserInfo> updateUser(@RequestBody UserInfo user, @PathVariable("id") Integer userId) {
+	// GET one user from user table
+	@RequestMapping("/updateUser/{id}")
+	public ModelAndView editUser(@PathVariable("id") int id, ModelAndView mv) {
+		mv.addObject("user", this.userService.getUserById(id));
+		mv.setViewName("updateUser");
+		return mv;
+	}
+	
+	// PUT one user to user table
+	@RequestMapping(value="/updateUser/{id}", method = RequestMethod.POST )
+	public ModelAndView updateUser(@ModelAttribute UserInfo user, @PathVariable("id") int id, ModelAndView mv) {
+		mv.addObject("user", this.userService.getUserById(id));
 		userService.updateUser(user);
-		return new ResponseEntity<UserInfo>(user, HttpStatus.OK);
+		return new ModelAndView("redirect:/");
 	}
 	
 	//DELETE one user to user table
