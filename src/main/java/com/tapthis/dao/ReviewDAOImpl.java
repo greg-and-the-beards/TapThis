@@ -29,8 +29,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ReviewInfo> getReviewByBeerName(String beerName) {
-		String hql = "FROM ReviewInfo where beerName = '" + beerName + "'";
+	public List<ReviewInfo> getReviewByBeerName(String beerName, String breweryName) {
+		String hql = "FROM ReviewInfo where beerName = '" + beerName + "' AND breweryName = '" + breweryName + "'";
 		return (List<ReviewInfo>) hibernateTemplate.find(hql);
 	}
 	
@@ -52,12 +52,12 @@ public class ReviewDAOImpl implements ReviewDAO {
 		ReviewInfo record = getReviewById(review.getReviewId());
 		
 		record.setBeerName(review.getBeerName());
+		record.setBreweryName(review.getBreweryName());
 		record.setReviewUserId(review.getReviewUserId());
 		record.setBeerRating(review.getBeerRating());
 		record.setHopsRating(review.getHopsRating());
 		record.setMaltRating(review.getMaltRating());
 		record.setReviewComment(review.getReviewComment());
-		record.setReviewAdded(review.getReviewAdded());
 		
 		hibernateTemplate.update(record);
 	}

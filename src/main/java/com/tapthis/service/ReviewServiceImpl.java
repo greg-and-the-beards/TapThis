@@ -28,8 +28,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewInfo> getReviewByBeerName(String beerName) {
-		return reviewDAO.getReviewByBeerName(beerName);
+	public List<ReviewInfo> getReviewByBeerName(String beerName, String breweryName) {
+		return reviewDAO.getReviewByBeerName(beerName, breweryName);
 	}
 	
 	@Override

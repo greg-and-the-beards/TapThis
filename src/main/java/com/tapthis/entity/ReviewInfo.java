@@ -19,6 +19,9 @@ public class ReviewInfo implements Serializable {
 	@Column(name="beer_name")
 	private String beerName;
 	
+	@Column(name="brewery_name")
+	private String breweryName;
+
 	@Column(name="user_id")
 	private int reviewUserId;
 	
@@ -34,9 +37,6 @@ public class ReviewInfo implements Serializable {
 	@Column(name="review_comment")
 	private String reviewComment;
 	
-	@Column(name="review_date_time_added")
-	private String reviewAdded;
-
 	public int getReviewId() {
 		return reviewId;
 	}
@@ -51,6 +51,14 @@ public class ReviewInfo implements Serializable {
 
 	public void setBeerName(String beerName) {
 		this.beerName = beerName;
+	}
+	
+	public String getBreweryName() {
+		return breweryName;
+	}
+
+	public void setBreweryName(String breweryName) {
+		this.breweryName = breweryName;
 	}
 
 	public int getReviewUserId() {
@@ -91,13 +99,5 @@ public class ReviewInfo implements Serializable {
 
 	public void setReviewComment(String reviewComment) {
 		this.reviewComment = reviewComment;
-	}
-
-	public String getReviewAdded() {
-		return reviewAdded;
-	}
-
-	public void setReviewAdded(String reviewAdded) {
-		this.reviewAdded = reviewAdded;
 	}
 }

@@ -6,7 +6,7 @@ import com.tapthis.entity.ReviewInfo;
 
 public interface ReviewDAO {
 	
-	List<ReviewInfo> getReviewByBeerName(String beerName);
+	List<ReviewInfo> getReviewByBeerName(String beerName, String breweryName);
 	List<ReviewInfo> getAllReviewsByUserId(int reviewUserId);
 	List<ReviewInfo> getOneReviewByUserId(int reviewUserId, int reviewId);
 	ReviewInfo getReviewById(int reviewId);
